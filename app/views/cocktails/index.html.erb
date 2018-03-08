@@ -1,0 +1,18 @@
+<h1>List of cocktails</h1>
+
+<ul>
+  <% @cocktails.each do |cocktail| %>
+    <li>
+      <%= link_to cocktail.name.upcase, cocktail_path(cocktail) %>  |
+      <%= link_to(cocktail_path(cocktail), options = { method: :delete, data: { confirm: "Are you sure?" } }) do %>
+        <i class="fas fa-trash-alt"></i>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<h2>Add a new cocktail</h2>
+<%= simple_form_for [@cocktail] do |f| %>
+  <%= f.input :name %>
+  <%= f.submit "add a cocktail", class: "btn btn-primary" %>
+<% end %>
